@@ -1,31 +1,30 @@
-public class solution{
-    public static void main(String[] args) {
-        // System.out.println("hello");
-        String[] strArr={"flower","fkow","flowers"};
-        int small=strArr[0].length();
-        for (int i = 0; i < strArr.length; i++) {
-            strArr[i]=strArr[i].toLowerCase();
-            if (small>strArr[i].length()) {
-                small=strArr[i].length();
-            }
+public class Solution {
+    public static String longestCommonPrefix(String[] strs) {
+        if (strs == null || strs.length == 0) {
+            return ""; // Handle empty input
         }
-        System.out.println(small);
-        String ans="";
-        boolean check=true;
-        char[] arr=new char[strArr.length];
-        for (int i = 0; i < small; i++) {
-            for (int j = 0; j < arr.length; j++) {
-                arr[j]=strArr[j].charAt(i);
-            }
-            for (int j = 1; j < arr.length; j++) {
-                if (arr[j-1]!=arr[j]) {
-                    check=false;
+
+        // Start with the first string as the initial prefix
+        String prefix = strs[0];
+
+        for (int i = 1; i < strs.length; i++) {
+            while (strs[i].indexOf(prefix) != 0) {
+                // Shorten the prefix until it matches
+                prefix = prefix.substring(0, prefix.length() - 1);
+                if (prefix.isEmpty()) {
+                    return ""; // Return early if no common prefix is found
                 }
             }
-            if (check==true) {
-                 ans+=arr[0];
-            }
         }
-        System.out.println(ans);
+
+        return prefix;
+    }
+
+    public static void main(String[] args) {
+        String[] strs1 = {"flower", "flow", "flight"};
+        System.out.println("Longest Common Prefix: " + longestCommonPrefix(strs1)); // Output: "fl"
+
+        String[] strs2 = {"dog", "racecar", "car"};
+        System.out.println("Longest Common Prefix: " + longestCommonPrefix(strs2)); // Output: ""
     }
 }
