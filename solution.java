@@ -28,3 +28,4 @@ public class Solution {
         System.out.println("Longest Common Prefix: " + longestCommonPrefix(strs2)); // Output: ""
     }
 }
+// i will just add this comment
